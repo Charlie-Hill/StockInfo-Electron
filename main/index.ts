@@ -1,10 +1,10 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, shell } from "electron";
 import isDev from "electron-is-dev";
 
 async function createMainWindow(): Promise<BrowserWindow> {
   const win = new BrowserWindow({
     center: true,
-    title: "Example App",
+    title: "LondonMarket Stock Quote Tool",
     width: 1024,
     height: 768,
     webPreferences: {
@@ -25,6 +25,12 @@ async function createMainWindow(): Promise<BrowserWindow> {
       ).default.join(__dirname, "../dist/index.html")}`
     );
   }
+
+  win.webContents.setWindowOpenHandler(({ url }) => {
+    shell.openExternal(url);
+    return { action: 'deny' }
+  });
+
   return win;
 }
 

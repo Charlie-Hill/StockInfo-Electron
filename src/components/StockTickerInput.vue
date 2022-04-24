@@ -7,6 +7,8 @@
 
   <p>Data is:</p>
   <span :if="dataData">{{ dataData }}</span>
+
+  <LMButton :if="dataData" :linkTo="`https://londonmarket.xyz/share/${dataData.ticker.replace('.L', '')}`">Open in LondonMarket.xyz</LMButton>
 </template>
 
 <style scoped>
